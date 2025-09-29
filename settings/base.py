@@ -1,13 +1,10 @@
 # Python modules
 import os
 
-# Project modules
-from settings.conf import *  # noqa: F403
-
 
 # Path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT_URLCONF = 'settings.urls'
+ROOT_URLCONF = "apps.test.urls"
 WSGI_APPLICATION = 'settings.wsgi.application'
 ASGI_APPLICATION = "settings.asgi.application"
 
@@ -22,7 +19,7 @@ DJANGO_AND_THIRD_PARTY_APPS = [
     'django.contrib.staticfiles',
 ]
 PROJECT_APPS = [
-    "apps.tasks.apps.TasksConfig",
+    "apps.test.apps.TestConfig",
 ]
 INSTALLED_APPS = DJANGO_AND_THIRD_PARTY_APPS + PROJECT_APPS
 
