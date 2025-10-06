@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurants</title>
+</head>
+<body>
+    <h1>Restaurants</h1>
+    <ul>
+        {% for r in restaurants %}
+            <li>
+                <a href="{% url 'catalogs:restaurant_detail' r.pk %}">{{ r.name }}</a>
+            </li>
+        {% empty %}
+            <li>No restaurants available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

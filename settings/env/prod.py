@@ -1,9 +1,13 @@
+from settings.base import *
 import os
-from settings.base import BASE_DIR  # import only what is needed
+from settings.base import BASE_DIR
 
+
+ROOT_URLCONF = "settings.urls"
 DEBUG = False
-ALLOWED_HOSTS = ["*"]  # или список доменов/айпи, где проект будет работать
+ALLOWED_HOSTS = ["yourdomain.com"]
 
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

@@ -4,7 +4,7 @@ import os
 
 # Path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT_URLCONF = "apps.test.urls"
+ROOT_URLCONF = "settings.urls"
 WSGI_APPLICATION = 'settings.wsgi.application'
 ASGI_APPLICATION = "settings.asgi.application"
 
@@ -19,8 +19,10 @@ DJANGO_AND_THIRD_PARTY_APPS = [
     'django.contrib.staticfiles',
 ]
 PROJECT_APPS = [
-    "apps.test.apps.TestConfig",
+    "apps.catalogs.apps.CatalogsConfig",
+    "apps.commerces.apps.CommercesConfig",
 ]
+
 INSTALLED_APPS = DJANGO_AND_THIRD_PARTY_APPS + PROJECT_APPS
 
 
@@ -92,3 +94,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SECRET_KEY = 'django-insecure-3x@1g$+!k7h4@_v9$g4#z)&(0z@l#2h+@u7x5#)1f@%5b2n&2d'
