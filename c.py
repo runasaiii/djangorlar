@@ -1,5 +1,9 @@
 from datetime import datetime
 
+
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
 class Post:
     def __init__(self, title: str, content: str, author: str):
         self.title = title
