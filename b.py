@@ -1,5 +1,8 @@
 import random
 
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
 def generate_numbers(n):
     return [random.randint(1, 100) for _ in range(n)]
 

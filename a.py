@@ -1,3 +1,6 @@
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
 def capitalize_words(s: str) -> str:
     return " ".join(word.capitalize() for word in s.split())
 
