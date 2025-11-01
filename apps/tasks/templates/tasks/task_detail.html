@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{{ task.title }}</title>
+    <style>
+        body{font-family:Arial, sans-serif; margin:20px}
+        a{color:#0a58ca; text-decoration:none}
+    </style>
+</head>
+<body>
+    <p><a href="{% url 'projects:tasks_list' %}">← Back to tasks</a></p>
+    <h1>{{ task.title }}</h1>
+    <p>Project: <a href="{% url 'projects:detail' task.project.pk %}">{{ task.project.name }}</a></p>
+    <p>Status: {{ task.get_status_display }}</p>
+    <p>Description: {{ task.description }}</p>
+</body>
+</html>
+
+
+

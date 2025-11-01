@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Projects</title>
+    <style>
+        body{font-family:Arial, sans-serif; margin:20px}
+        a{color:#0a58ca; text-decoration:none}
+        .pager a{margin:0 8px}
+    </style>
+    </head>
+<body>
+    <h1>Projects</h1>
+    <ul>
+        {% for project in page_obj %}
+            <li>
+                <a href="{% url 'projects:detail' project.pk %}">{{ project.name }}</a>
+                — by {{ project.author.username }}
+            </li>
+        {% empty %}
+            <li>No projects yet.</li>
+        {% endfor %}
+    </ul>
+    <div class="pager">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+        {% endif %}
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+
+    <p><a href="{% url 'projects:tasks_list' %}">All tasks</a></p>
+</body>
+</html>
+
+
+
