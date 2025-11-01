@@ -1,3 +1,5 @@
+print("This is worktree-first-duplicate/a.py")
+
 def greet(name: str) -> str:
     return f"Hello, {name}!"
 
