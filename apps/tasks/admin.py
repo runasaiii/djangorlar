@@ -59,7 +59,7 @@ class UserTaskAdmin(ModelAdmin):
     list_display = (
         'id',
         'task',
-        'user',
+        'custom_user',
         'created_at',
     )
     readonly_fields = (

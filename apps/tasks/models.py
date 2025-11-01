@@ -1,6 +1,5 @@
 from django.db import models
 from apps.abstracts.models import AbstractSoftDeletableModel
-from django.contrib.auth.models import User
 from django.db.models import (
     CharField,
     IntegerField,
@@ -11,7 +10,7 @@ from django.db.models import (
     CASCADE,
     PROTECT,
 )
-
+from apps.auths.models import CustomUser
 
 class Task(AbstractSoftDeletableModel):
     STATUS_TODO = 1
@@ -42,9 +41,9 @@ class Task(AbstractSoftDeletableModel):
         on_delete = CASCADE,
     )
     assignees = ManyToManyField(
-        to=User,
+        to=CustomUser,
         through="UserTask",
-        through_fields=("task", "user"),
+        through_fields=("task", "custom_user"),
         blank=True,
     )
 
@@ -55,12 +54,12 @@ class Project(AbstractSoftDeletableModel):
         max_length=NAME_MAX_LENGTH,
     )
     author = ForeignKey(
-        to = User,
+        to = CustomUser,
         on_delete = PROTECT,
         related_name = "projects",
     )
     users = ManyToManyField(
-        to = User,
+        to = CustomUser,
         blank = True,
         related_name = "projects_collaborated",
     )
@@ -76,15 +75,15 @@ class UserTask(AbstractSoftDeletableModel):
         to = Task, 
         on_delete=CASCADE
         )
-    user = ForeignKey(
-        to = User, 
+    custom_user = ForeignKey(
+        to = CustomUser, 
         on_delete=CASCADE
         )
 
     class Meta:
         constraints = [
             UniqueConstraint(
-                fields = ["task", "user"],
+                fields = ["task", "custom_user"],
                 name = "unique_task_user_assignment"
             )
         ]

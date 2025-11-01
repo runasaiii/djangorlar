@@ -9,6 +9,9 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 ASGI_APPLICATION = "settings.asgi.application"
 
 
+#Custom User Model
+AUTH_USER_MODEL = "auths.CustomUser"
+
 # Apps
 DJANGO_AND_THIRD_PARTY_APPS = [
     'django.contrib.admin',
@@ -21,7 +24,7 @@ DJANGO_AND_THIRD_PARTY_APPS = [
 PROJECT_APPS = [
     "apps.abstracts.apps.AbstractsConfig",
     "apps.tasks.apps.TasksConfig",
-
+    "apps.auths.apps.AuthsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_AND_THIRD_PARTY_APPS + PROJECT_APPS
