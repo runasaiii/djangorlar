@@ -59,3 +59,12 @@ def main():
         print(post)
     
     print(f"\nTotal Likes in Blog: {blog.total_likes()}")
+
+
+class Profile:
+    def __init__(self, username: str, bio: str):
+        self.username = username
+        self.bio = bio
+
+    def __str__(self) -> str:
+        return f"Profile(username={self.username}, bio={self.bio})"
