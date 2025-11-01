@@ -8,6 +8,10 @@ def is_palindrome(s: str) -> bool:
     cleaned = ''.join(c.lower() for c in s if c.isalnum())
     return cleaned == cleaned[::-1]
 
+def sentence_palindrome(s: str) -> bool:
+    cleaned = ''.join(c.lower() for c in s if c.isalnum())
+    return cleaned == cleaned[::-1]
+
 def reverse_string(s: str) -> str:
     return s[::-1]
 

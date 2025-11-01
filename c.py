@@ -63,3 +63,14 @@ def main():
         print(post)
     
     print(f"\nTotal Likes in Blog: {blog.total_likes()}")
+
+
+class Comment:
+    def __init__(self, post: Post, author: str, content: str):
+        self.post = post
+        self.author = author
+        self.content = content
+        self.created_at = datetime.now()
+    
+    def __str__(self) -> str:
+        return f"Comment by {self.author} on {self.post.title} at {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}: {self.content}"
