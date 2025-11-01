@@ -53,3 +53,15 @@ def split_numbers(numbers, n):
 
 def merge_numbers(list1, list2):
     return list1 + list2
+
+def calculator():
+    """A simple calculator function."""
+    while True:
+        try:
+            expr = input("Enter expression (or 'exit' to quit): ")
+            if expr.lower() == 'exit':
+                break
+            result = eval(expr)
+            print(f"Result: {result}")
+        except Exception as e:
+            print(f"Error: {e}")
