@@ -20,6 +20,7 @@ DJANGO_AND_THIRD_PARTY_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 PROJECT_APPS = [
     "apps.abstracts.apps.AbstractsConfig",

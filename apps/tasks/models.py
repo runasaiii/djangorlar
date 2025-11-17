@@ -1,5 +1,6 @@
-from django.db import models
-from apps.abstracts.models import AbstractSoftDeletableModel
+#Python modules
+
+#Django modules
 from django.db.models import (
     CharField,
     IntegerField,
@@ -10,9 +11,14 @@ from django.db.models import (
     CASCADE,
     PROTECT,
 )
+
+#Project modules
+from apps.abstracts.models import AbstractBaseModel
 from apps.auths.models import CustomUser
 
-class Task(AbstractSoftDeletableModel):
+
+class Task(AbstractBaseModel):
+    """Model representing a task within a project."""
     STATUS_TODO = 1
     STATUS_IN_PROGRESS = 2
     STATUS_DONE = 3
@@ -48,7 +54,7 @@ class Task(AbstractSoftDeletableModel):
     )
 
 
-class Project(AbstractSoftDeletableModel):
+class Project(AbstractBaseModel):
     NAME_MAX_LENGTH = 100
     name = CharField(
         max_length=NAME_MAX_LENGTH,
@@ -70,7 +76,7 @@ class Project(AbstractSoftDeletableModel):
     def __str__(self):
         return self.name
     
-class UserTask(AbstractSoftDeletableModel):
+class UserTask(AbstractBaseModel):
     task = ForeignKey(
         to = Task, 
         on_delete=CASCADE
