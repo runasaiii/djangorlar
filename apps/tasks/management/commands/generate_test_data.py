@@ -197,7 +197,7 @@ class Command(BaseCommand):
             assignees = choices(existed_users, k=choice([0, 1, 2, 3]))
             user: User
             for user in assignees:
-                UserTask.objects.get_or_create(task=task, user=user)
+                UserTask.objects.get_or_create(task=task, custom_user=user)
 
         tasks_after: int = Task.objects.count()
         self.stdout.write(

@@ -12,14 +12,14 @@ class Post:
         self.created_at = datetime.now()
         self.likes = 0
 
-        def like(self) -> None:
-            self.likes += 1
-        
-        def summary(self) -> str:
-            return f"{self.title} by {self.author}, Likes: {self.likes}"
-        
-        def __str__(self) -> str:
-            return f"Post(title={self.title}, author={self.author}, created_at={self.created_at.strftime('%Y-%m-%d %H:%M:%S')}, likes={self.likes})"
+    def like(self) -> None:
+        self.likes += 1
+    
+    def summary(self) -> str:
+        return f"{self.title} by {self.author}, Likes: {self.likes}"
+    
+    def __str__(self) -> str:
+        return f"Post(title={self.title}, author={self.author}, created_at={self.created_at.strftime('%Y-%m-%d %H:%M:%S')}, likes={self.likes})"
         
 
 class Blog:

@@ -7,6 +7,7 @@ from django.db.models import(
     CharField,
     BooleanField,
     DateField,
+    DateTimeField,
     DecimalField,
 ) 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
@@ -34,12 +35,12 @@ class CustomUserManager(BaseUserManager):
     ) -> 'CustomUser':
         if not email:
             raise ValidationError(
-                message = "The Email field must be set,",
+                "The Email field must be set,",
                 code = 'email_not_set'
             )
         if not full_name:
             raise ValidationError(
-                message = "The Full Name field must be set,",
+                "The Full Name field must be set,",
                 code = 'full_name_not_set'
             )
         
@@ -67,7 +68,7 @@ class CustomUserManager(BaseUserManager):
             password = password,
             **kwargs
         )
-        new_user.set_password(password)
+        # Password is already set in __obtain_user_instance, no need to set again
         new_user.save(using=self._db)
         return new_user
     
@@ -192,14 +193,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         verbose_name="Salary",
         help_text="Enter the salary of the user.",
     )
-    password = CharField(
-        max_length=PASSWORD_MAX_LENGTH,
-        validators=[validate_password],
-        verbose_name="Password",
-        help_text="Enter a secure password.",
-        null=True,
-        blank=True,
-    )
+    # Note: password field is provided by AbstractBaseUser, no need to define it
     is_staff = BooleanField(
         default=False,
         verbose_name="Staff",
@@ -210,12 +204,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
         verbose_name="Active",
         help_text="Designates whether this user should be treated as active."
     )
-    date_joined = DateField(
+    date_joined = DateTimeField(
         default=timezone.now,
         verbose_name="Date Joined",
         help_text="The date and time when the user joined."
     )
-    last_login = DateField(
+    last_login = DateTimeField(
         null=True,
         blank=True,
         verbose_name="Last Login",  
@@ -236,9 +230,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, AbstractBaseModel):
 
     def clean(self) -> None:
         """Custom clean method to validate username."""
-        validate_username_no_special_chars(
-            username = self.username
-            )
+        validate_username_no_special_chars(self.username)
         return super().clean()
 
 
